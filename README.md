@@ -7,3 +7,4 @@ Study on Classification of Sushi Ingredients Using Deep Learning
 
 深層学習による寿司ネタの種類認識に関する研究
 
+![astronaut Made By jianliming2](https://github.com/AozakiHayate/Thesis-/blob/main/astronaut.svg)
