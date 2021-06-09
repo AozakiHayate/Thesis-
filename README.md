@@ -2,7 +2,7 @@
   My Graduation Thesis （Nihon-University CIT） 
   
   //Copyright (c) 2020 YIYANG HAO 
-  Released under the MIT license 
+  Released under the MIT license  
   https://opensource.org/licenses/mit-license.php 
    
   Study on Classification of Sushi Ingredients Using Deep Learning  
