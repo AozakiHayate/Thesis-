@@ -1,28 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
-
-# In[ ]:
-
+#Study on Classification of Sushi Ingredients Using Deep Learning
+#Copyright (c) 2020 YIYANG HAO Released under the MIT license
 
 from google.colab import drive
+
+'''
 drive.mount('/content/drive')
-
-
-# In[ ]:
-
-
-get_ipython().system('cp /content/drive/MyDrive/DATA/sushi1.zip sushi1.zip')
-
-
-# In[ ]:
-
-
-get_ipython().system('cp /content/drive/MyDrive/DATA/sushi0.zip sushi0.zip')
-
-
-# In[ ]:
-
-
+#get_ipython().system('cp /content/drive/MyDrive/DATA/sushi1.zip sushi1.zip')
+#get_ipython().system('cp /content/drive/MyDrive/DATA/sushi0.zip sushi0.zip')
+'''
 import matplotlib.pyplot as plt
 import numpy as np
 import os
@@ -33,40 +20,16 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 
-
-# In[ ]:
-
-
-get_ipython().system('unzip /content/sushi1.zip')
-
-
-# In[ ]:
-
-
-get_ipython().system('unzip /content/sushi0.zip')
-
-
-# In[ ]:
-
-
-data_dir = '/content/sushi1'
-
-
-# In[ ]:
-
-
+'''
+#get_ipython().system('unzip /content/sushi1.zip')
+#get_ipython().system('unzip /content/sushi0.zip')
+#data_dir = '/content/sushi1'
+'''
 PIL.Image.open('/content/sushi2/maguro/IMG_3079.JPEG')
-
-
-# In[ ]:
-
 
 batch_size = 9
 img_height = 180
 img_width = 180
-
-
-# In[ ]:
 
 
 train_ds = tf.keras.preprocessing.image_dataset_from_directory(
@@ -78,9 +41,6 @@ train_ds = tf.keras.preprocessing.image_dataset_from_directory(
   batch_size=batch_size)
 
 
-# In[ ]:
-
-
 val_ds = tf.keras.preprocessing.image_dataset_from_directory(
   data_dir,
   validation_split=0.2,
@@ -89,16 +49,8 @@ val_ds = tf.keras.preprocessing.image_dataset_from_directory(
   image_size=(img_height, img_width),
   batch_size=batch_size)
 
-
-# In[ ]:
-
-
 class_names = train_ds.class_names
 print(class_names)
-
-
-# In[ ]:
-
 
 import matplotlib.pyplot as plt
 
@@ -110,42 +62,22 @@ for images, labels in train_ds.take(1):
     plt.title(class_names[labels[i]])
     plt.axis("off")
 
-
-# In[ ]:
-
-
 for image_batch, labels_batch in train_ds:
   print(image_batch.shape)
   print(labels_batch.shape)
   break
-
-
-# In[ ]:
-
 
 AUTOTUNE = tf.data.AUTOTUNE
 
 train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
 val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
-
-# In[ ]:
-
-
 normalization_layer = layers.experimental.preprocessing.Rescaling(1./255)
-
-
-# In[ ]:
-
 
 normalized_ds = train_ds.map(lambda x, y: (normalization_layer(x), y))
 image_batch, labels_batch = next(iter(normalized_ds))
 first_image = image_batch[0]
 print(np.min(first_image), np.max(first_image)) 
-
-
-# In[ ]:
-
 
 num_classes = 4
 
@@ -162,29 +94,15 @@ model = Sequential([
   layers.Dense(num_classes)
 ])
 
-
-# In[ ]:
-
-
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 
 
-# In[ ]:
-
-
 model.summary()
-
-
-# In[ ]:
-
 
 import tensorflow as tf
 tf.keras.utils.plot_model(model,show_shapes=True)
-
-
-# In[ ]:
 
 
 epochs=100
@@ -193,10 +111,6 @@ history = model.fit(
   validation_data=val_ds,
   epochs=epochs
 )
-
-
-# In[ ]:
-
 
 acc = history.history['accuracy']
 val_acc = history.history['val_accuracy']
@@ -221,9 +135,6 @@ plt.title('Training and Validation Loss')
 plt.show()
 
 
-# In[ ]:
-
-
 data_augmentation = keras.Sequential(
   [
     layers.experimental.preprocessing.RandomFlip("horizontal", 
@@ -233,10 +144,6 @@ data_augmentation = keras.Sequential(
   ]
 )
 
-
-# In[ ]:
-
-
 plt.figure(figsize=(10, 10))
 for images, _ in train_ds.take(1):
   for i in range(9):
@@ -244,10 +151,6 @@ for images, _ in train_ds.take(1):
     ax = plt.subplot(3, 3, i + 1)
     plt.imshow(augmented_images[0].numpy().astype("uint8"))
     plt.axis("off")
-
-
-# In[ ]:
-
 
 model = Sequential([
   data_augmentation,
@@ -265,28 +168,15 @@ model = Sequential([
 ])
 
 
-# In[ ]:
-
-
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 
-
-# In[ ]:
-
-
 model.summary()
-
-
-# In[ ]:
 
 
 import tensorflow as tf
 tf.keras.utils.plot_model(model,show_shapes=True)
-
-
-# In[ ]:
 
 
 epochs = 100
@@ -295,9 +185,6 @@ history = model.fit(
   validation_data=val_ds,
   epochs=epochs
 )
-
-
-# In[ ]:
 
 
 acc = history.history['accuracy']
@@ -321,10 +208,3 @@ plt.plot(epochs_range, val_loss, label='Validation Loss')
 plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
 plt.show()
-
-
-# In[ ]:
-
-
-
-
