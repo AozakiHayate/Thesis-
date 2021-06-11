@@ -1,7 +1,7 @@
 # Thesis 
   My Graduation Thesis （Nihon-University CIT） 
   
-  //Copyright (c) 2020 YIYANG HAO 
+  Copyright (c) 2020 YIYANG HAO 
   Released under the MIT license  
   https://opensource.org/licenses/mit-license.php 
    
