@@ -18,7 +18,9 @@
   The dataset (self-made) used in the Study is available at the following URL:  
   なお、研究用いたデータセット（自分作り）を下記のURLから公開された: 
   
-  https://drive.google.com/drive/folders/1SvQS1k11RINu_6EZDF5ZKnEczbLLsC90?usp=sharing  
+  URL1:https://drive.google.com/drive/folders/1SvQS1k11RINu_6EZDF5ZKnEczbLLsC90?usp=sharing    
+  URL2:https://www.kaggle.com/yiyanghao/sushidataset
   
   
-   ![astronaut Made By jianliming2](https://github.com/AozakiHayate/Thesis-/blob/main/astronaut.svg) 
+   ![astronaut Made By jianliming2](https://github.com/AozakiHayate/Thesis-/blob/main/astronaut.svg)   
+  
